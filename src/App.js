@@ -1,7 +1,7 @@
-import './App.css';
+import './App.css'
 import React from 'react'
-import ReactDom from 'react-dom'
-import * as apiCalls from './apiCalls';
+import * as apiCalls from './apiCalls'
+import AllMovies from './AllMovies'
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +13,6 @@ class App extends React.Component {
 
   componentDidMount = () => {
     apiCalls.getData().then((data) => {
-      console.log('line16', data.movies)
       this.setState({
         allMovies : data.movies
       }) 
@@ -24,6 +23,9 @@ class App extends React.Component {
     return(
       <main className='App'>
         <h1>Rancid Tomatillos</h1>
+        < AllMovies 
+          showMovies={this.state.allMovies}
+        />
       </main>
     )
 
