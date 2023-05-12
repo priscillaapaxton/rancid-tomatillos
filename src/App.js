@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import * as apiCalls from './apiCalls'
+import AllMovies from './AllMovies'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state= {
+      allMovies: []
+    }
+  }
+
+  componentDidMount = () => {
+    apiCalls.getData().then((data) => {
+      this.setState({
+        allMovies : data.movies
+      }) 
+    })
+  }
+
+  render() {
+    return(
+      <main className='App'>
+        <h1>Rancid Tomatillos</h1>
+        < AllMovies 
+          showMovies={this.state.allMovies}
+        />
+      </main>
+    )
+
+  }
 }
 
 export default App;
