@@ -22,10 +22,15 @@ class App extends React.Component {
   render() {
     return(
       <main className='App'>
-        <h1>Rancid Tomatillos</h1>
+        <header>
+          <img className='logo' src={require('./Rancid-tomatillos.png')} alt='Rotten Tomatillos logo'></img>
+        </header>
         < AllMovies 
           showMovies={this.state.allMovies}
         />
+        <footer>
+          <h3> Rancid Tomatillos 2023 </h3>
+        </footer>
       </main>
     )
 

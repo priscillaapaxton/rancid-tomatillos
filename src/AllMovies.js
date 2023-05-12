@@ -1,20 +1,41 @@
+// import './AllMovies.css'
+// import React from 'react'
+
+// const AllMovies = (movies) => {
+//   return (
+//     movies.showMovies.map((movie) => {
+//       return (
+//         <img className='moviePoster'
+//           src={movie.poster_path} 
+//           key={movie.id}
+//           // onClick={() => singleMovie(movie.id)}
+//           />
+//       )
+//     })
+//   )
+// }
+
+// export default AllMovies
+
+
 import './AllMovies.css'
 import React from 'react'
 
-const AllMovies = (props) => {
-  console.log(props.showMovies)
+const AllMovies = ({showMovies}) => {
+  const movieCards = showMovies.map(movie => {
+    return (
+      <img className='movie-card'
+        src={movie.poster_path} 
+        key={movie.id}
+      />
+    )
+  })
   return (
-    props.showMovies.map((movie) => {
-      console.log('line8', movie.poster_path)
-      return (
-        <div className='movieContent'>
-          <img src={movie.poster_path}/>
-          <p>{movie.title}</p>
-        </div>
-
-      )
-    })
+    <div className='movie-container'>
+      {movieCards}
+    </div>
   )
+
 }
 
 export default AllMovies
