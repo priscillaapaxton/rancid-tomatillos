@@ -1,0 +1,12 @@
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  padding: 0px;
+  background-color: black;
+}
+
+.movie-card {
+  width: 100%;
+}
+

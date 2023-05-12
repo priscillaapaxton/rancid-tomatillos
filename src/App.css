@@ -1,0 +1,27 @@
+html {
+  background-color: black;
+}
+
+header {
+  background-color: rgb(18, 18, 18);
+  margin: 0;
+  height: 20vh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo {
+  padding-left: 20px;
+  height: 300px;
+  width: 300px;
+}
+
+h3 {
+  height: 15vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
