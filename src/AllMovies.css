@@ -7,7 +7,17 @@
 }
 
 .movie-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-card-image {
   width: 100%;
+}
+
+.movie-card-title {
+  color: white;
+  font-size: 20px;
 }
 
 .movie-card:hover {

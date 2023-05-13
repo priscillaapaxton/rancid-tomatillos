@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    apiCalls.getData().then((data) => {
+    apiCalls.getAllMovies().then((data) => {
       this.setState({
         allMovies : data.movies,
         SelectedMovie: null
@@ -26,9 +26,10 @@ class App extends React.Component {
 
   displaySelectedMovie = (id) => {
     const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
+    // console.log('line28', filteredMovie[0].id)
     this.setState({
       test: false,
-      SelectedMovie: filteredMovie
+      SelectedMovie: filteredMovie[0].id
     })
   }
 

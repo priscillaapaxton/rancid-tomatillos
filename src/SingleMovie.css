@@ -1,9 +1,62 @@
+* {
+  font-family: "Gill Sans", sans-serif;
+}
+.single-movie-container {
+  display: flex;
+  margin-left: 150px;
+  margin-top: 30px;
+  margin-bottom: 75px;
+}
+
 .single-movie {
-  height: 500px;
-  width: 500px,
+  height: 850px;
+  width: auto;
+  border-radius: 3%;
+}
+
+.movie-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-bet;
+  margin-left: 125px;
+  width: 45%;
+  height: 800px;
+}
+
+.single-movie-title{
+  font-size: 50px;
+  color: white;
+}
+
+.single-movie-tagline {
+  font-size: 23px;
+  color: white;
+  opacity: .65;
+}
+
+.single-movie-overview {
+  font-size: 25px;
+  color: white;
+}
+
+.single-movie-bottom-container {
+  display: flex;
+}
+
+.single-movie-date, .single-movie-rating {
+  color: white;
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.single-movie-date {
+  margin-right: 100px;
 }
 
 button {
-  height: 100px;
-  width: 100px
+  height: 50px;
+  width: 150px;
+  border-radius: 5%;
+  color:darkred;
 }
