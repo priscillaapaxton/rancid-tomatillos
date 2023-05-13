@@ -10,3 +10,9 @@
   width: 100%;
 }
 
+.movie-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  border: 2px solid rgb(255, 255, 255);
+}
+
