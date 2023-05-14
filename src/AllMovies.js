@@ -7,7 +7,8 @@ const AllMovies = (props) => {
     return (
       <div className='movie-card' key={movie.id} onClick={() => props.displaySelectedMovie(movie.id)} >
         <img className='movie-card-image'
-          src={movie.poster_path} 
+          src={movie.poster_path}
+          alt={movie.title}
         />
         <p className='movie-card-title'>{movie.title}</p>
       </div>
