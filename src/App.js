@@ -22,7 +22,7 @@ class App extends React.Component {
       this.setState({
         allMovies : data.movies,
         SelectedMovie: null,
-        isLoading: true
+        isLoading: false
       })
     })
     .catch(error => this.setState({
@@ -52,7 +52,10 @@ class App extends React.Component {
     const logo = <img className='logo' src={require('./Rancid-tomatillos.png')} alt='Rotten Tomatillos logo'></img>
 
     if(this.state.error) {
-      return <div>Error: {this.state.error.message}</div>
+      return <h1>Error: {this.state.error.message}</h1>
+    } 
+    else if(this.state.isLoading) {
+      return <h1>Loading...</h1>
     }
     else if(this.state.homeScreen) {
       return(
