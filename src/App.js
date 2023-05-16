@@ -10,42 +10,58 @@ class App extends React.Component {
     this.state= {
       allMovies: [],
       SelectedMovie: null,
-      test: true,
-      // isLoading: false  // return div to return 'is loading...'
+      homeScreen: true,
+      isLoading: null,
+      error: null
     }
   }
 
   componentDidMount = () => {
-    apiCalls.getAllMovies().then((data) => {
+    apiCalls.getAllMovies()
+    .then((data) => {
       this.setState({
         allMovies : data.movies,
-        SelectedMovie: null
-      }) 
+        SelectedMovie: null,
+        isLoading: false
+      })
     })
+    .catch(error => this.setState({
+      isLoading: false,
+      error: error
+    }))
   }
 
   displaySelectedMovie = (id) => {
     const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
     // console.log('line28', filteredMovie[0].id)
     this.setState({
-      test: false,
+      homeScreen: false,
       SelectedMovie: filteredMovie[0].id
     })
   }
 
   returnHome = () => {
     this.setState({
-      test: true,
+      homeScreen: true,
       SelectedMovie: null
     }) 
   }
 
   render() {
-    if(this.state.test) {
+
+    const logo = <img className='logo' src={require('./Rancid-tomatillos.png')} alt='Rotten Tomatillos logo'></img>
+
+    if(this.state.error) {
+      return <h1>Error: {this.state.error.message}</h1>
+    } 
+    else if(this.state.isLoading) {
+      return <h1>Loading...</h1>
+    }
+    else if(this.state.homeScreen) {
       return(
       <main className='App'>
         <header>
-          <img className='logo' src={require('./Rancid-tomatillos.png')} alt='Rotten Tomatillos logo'></img>
+          {logo}
         </header>
           <AllMovies
           showMovies={this.state.allMovies} 
@@ -56,11 +72,12 @@ class App extends React.Component {
         </footer>
       </main>
       )
-    } else {
+    } 
+    else {
       return(
         <main className='App'>
           <header>
-            <img className='logo' src={require('./Rancid-tomatillos.png')} alt='Rotten Tomatillos logo'></img>
+            {logo}
           </header>
             <SingleMovie
             returnHome={this.returnHome}

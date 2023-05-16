@@ -3,12 +3,12 @@ import React from 'react'
 
 const AllMovies = (props) => {
   const movieCards = props.showMovies.map(movie => {
+
     return (
-      <div className='movie-card' onClick={() => props.displaySelectedMovie(movie.id)} >
+      <div className='movie-card' key={movie.id} onClick={() => props.displaySelectedMovie(movie.id)} >
         <img className='movie-card-image'
-          src={movie.poster_path} 
-          key={movie.id}
-          
+          src={movie.poster_path}
+          alt={movie.title}
         />
         <p className='movie-card-title'>{movie.title}</p>
       </div>

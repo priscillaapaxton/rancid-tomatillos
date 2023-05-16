@@ -1,8 +1,8 @@
 .movie-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 5px;
-  padding: 0px;
+  grid-gap: 7px;
+  padding: 7px;
   background-color: black;
 }
 
@@ -18,10 +18,11 @@
 .movie-card-title {
   color: white;
   font-size: 20px;
+  text-align: center;
 }
 
 .movie-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   cursor: pointer;
   border: 2px solid rgb(255, 255, 255);
 }
