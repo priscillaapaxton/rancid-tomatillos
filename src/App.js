@@ -3,6 +3,7 @@ import React from 'react'
 import * as apiCalls from './apiCalls'
 import AllMovies from './AllMovies'
 import SingleMovie from './SingleMovie'
+import {Route, Switch} from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
@@ -33,61 +34,41 @@ class App extends React.Component {
 
   displaySelectedMovie = (id) => {
     const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
-    // console.log('line28', filteredMovie[0].id)
     this.setState({
-      homeScreen: false,
       SelectedMovie: filteredMovie[0].id
     })
   }
 
   returnHome = () => {
     this.setState({
-      homeScreen: true,
       SelectedMovie: null
     }) 
   }
 
   render() {
-
     const logo = <img className='logo' src={require('./Rancid-tomatillos.png')} alt='Rotten Tomatillos logo'></img>
+    return (
+    <main className='App'>
+         <header>
+           {logo}
+         </header>
+         <Route exact path='/:id' render={() => {
+          return <SingleMovie returnHome={this.returnHome} displaySelectedMovie={this.state.SelectedMovie}/>
+         } }/>
+         <Route exact path='/' render={() => (
+          <AllMovies showMovies={this.state.allMovies} displaySelectedMovie={this.displaySelectedMovie}/>
+            )}/>
+         <footer>
+           <h3> Rancid Tomatillos 2023 </h3>
+         </footer>
+    </main>
 
-    if(this.state.error) {
-      return <h1>Error: {this.state.error.message}</h1>
-    } 
-    else if(this.state.isLoading) {
-      return <h1>Loading...</h1>
-    }
-    else if(this.state.homeScreen) {
-      return(
-      <main className='App'>
-        <header>
-          {logo}
-        </header>
-          <AllMovies
-          showMovies={this.state.allMovies} 
-          displaySelectedMovie={this.displaySelectedMovie}
-          />
-        <footer>
-          <h3> Rancid Tomatillos 2023 </h3>
-        </footer>
-      </main>
-      )
-    } 
-    else {
-      return(
-        <main className='App'>
-          <header>
-            {logo}
-          </header>
-            <SingleMovie
-            returnHome={this.returnHome}
-            displaySelectedMovie={this.state.SelectedMovie}
-            />
-        </main>
-        )
-    }
+    )
     }
 }
-
+//switch contains allMovies and SingleMovie components.
 
 export default App;
+
+
+    
