@@ -1,6 +1,7 @@
 import React from 'react'
 import './SingleMovie.css'
 import * as apiCalls from './apiCalls'
+import {Link} from 'react-router-dom'
 
 class SingleMovie extends React.Component {
   constructor() {
@@ -44,10 +45,12 @@ class SingleMovie extends React.Component {
             <p className='single-movie-date'>Release Date: {formattedDate}</p>
             <p className='single-movie-rating'>Average Rating: {this.state.currentMovieRating}</p>
           </div>
-          <button onClick={(e) => {
-            e.preventDefault()
+          <button>
+            <Link to='/' onClick={(e) => {
+            // e.preventDefault()
             this.props.returnHome()
-          }}>RETURN HOME</button>
+          }}>RETURN HOME</Link>
+          </button>
         </div>
       </div>
     )

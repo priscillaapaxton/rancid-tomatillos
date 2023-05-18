@@ -1,10 +1,12 @@
 import './AllMovies.css'
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const AllMovies = (props) => {
   const movieCards = props.showMovies.map(movie => {
 
     return (
+     <Link to={`/${movie.id}`}>
       <div className='movie-card' key={movie.id} onClick={() => props.displaySelectedMovie(movie.id)} >
         <img className='movie-card-image'
           src={movie.poster_path}
@@ -12,6 +14,7 @@ const AllMovies = (props) => {
         />
         <p className='movie-card-title'>{movie.title}</p>
       </div>
+      </Link>
     )
   })
   return (
