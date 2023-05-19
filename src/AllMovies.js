@@ -7,8 +7,7 @@ const AllMovies = (props) => {
 
     return (
      <Link to={`/${movie.id}`}>
-      <div className='movie-card' key={movie.id} onClick={() => {
-        return props.displaySelectedMovie(movie.id)}} >
+       <div className='movie-card' key={movie.id}  >
         <img className='movie-card-image'
           src={movie.poster_path}
           alt={movie.title}
@@ -27,3 +26,6 @@ const AllMovies = (props) => {
 }
 
 export default AllMovies
+
+// onClick={() => {
+//   return props.displaySelectedMovie(movie.id)}}

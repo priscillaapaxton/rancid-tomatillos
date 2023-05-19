@@ -1,18 +1,20 @@
 import './App.css'
 import React from 'react'
-import * as apiCalls from './apiCalls'
 import AllMovies from './AllMovies'
 import SingleMovie from './SingleMovie'
-import {Route, Switch} from 'react-router-dom'
+import Loading from './Loading'
+import Error from './Error'
+import * as apiCalls from './apiCalls'
+import {Route, Link} from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state= {
       allMovies: [],
-      selectedMovie: null,
+      selectedMovie: {},
       isLoading: true,
-      error: null
+      isError: false
     }
   }
 
@@ -25,31 +27,26 @@ class App extends React.Component {
       })
     })
     .catch(error => this.setState({
-      error: error
+      isError: true
     }))
   }
 
-  displaySelectedMovie = (id) => {
-    apiCalls.getSingleMovie(id).then((data) => {
-      console.log('line44',data.movie)
-      this.setState({
-        selectedMovie: data.movie,
-        isLoading: false
-      })
-    })
-  }
-
   // displaySelectedMovie = (id) => {
-  //   console.log('line36', id)
-  //   const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
-  //   this.setState({
-  //     SelectedMovie: filteredMovie[0].id
+  //   apiCalls.getSingleMovie(id)
+  //   .then((data) => {
+  //     this.setState({
+  //       selectedMovie: data.movie,
+  //       isLoading: false
+  //     })
   //   })
+  //   .catch(error => this.setState({
+  //     isError: true
+  //   }))
   // }
 
   returnHome = () => {
     this.setState({
-      SelectedMovie: null
+      selectedMovie: {}
     }) 
   }
 
@@ -58,16 +55,23 @@ class App extends React.Component {
     return (
     <main className='App'>
          <header>
-           {logo}
+          <Link to='/' onClick={() => 
+          this.returnHome()}>{logo}</Link>
          </header>
+
+         {/* <Route exact path='/:id' render={() => ( <SingleMovie loading={this.state.isLoading} returnHome={this.returnHome} singleMovie={this.state.selectedMovie}/>
+          )  }/>  */}
       
-         <Route exact path='/:id' render={() => this.state.selectedMovie ? ( <SingleMovie loading={this.state.isLoading} returnHome={this.returnHome} singleMovie={this.state.selectedMovie}/>
+         <Route exact path='/:id' render={({match}) => {
+          const id = match.params.id
+           return this.state.selectedMovie ? ( <SingleMovie returnHome={this.returnHome} id={id} key={id}/> ) : ( <div>LOADING </div> ) } 
 
-          ) : (<div>LOADING </div>) }/> 
+         } />
 
-         <Route exact path='/' render={() => (
-          <AllMovies showMovies={this.state.allMovies} displaySelectedMovie={this.displaySelectedMovie}/>
-            )}/>
+         <Route exact path='/' render={() => ( <AllMovies showMovies={this.state.allMovies} /> )}/>
+
+
+         {/* displaySelectedMovie={this.displaySelectedMovie} */}
          <footer>
            <h3> Rancid Tomatillos 2023 </h3>
          </footer>
@@ -104,4 +108,10 @@ export default App;
   //   })
   // }
 
-    
+      // displaySelectedMovie = (id) => {
+  //   console.log('line36', id)
+  //   const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
+  //   this.setState({
+  //     SelectedMovie: filteredMovie[0].id
+  //   })
+  // }
