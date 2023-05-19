@@ -10,9 +10,8 @@ class App extends React.Component {
     super()
     this.state= {
       allMovies: [],
-      SelectedMovie: null,
-      homeScreen: true,
-      isLoading: null,
+      selectedMovie: null,
+      isLoading: true,
       error: null
     }
   }
@@ -22,22 +21,31 @@ class App extends React.Component {
     .then((data) => {
       this.setState({
         allMovies : data.movies,
-        SelectedMovie: null,
         isLoading: false
       })
     })
     .catch(error => this.setState({
-      isLoading: false,
       error: error
     }))
   }
 
   displaySelectedMovie = (id) => {
-    const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
-    this.setState({
-      SelectedMovie: filteredMovie[0].id
+    apiCalls.getSingleMovie(id).then((data) => {
+      console.log('line44',data.movie)
+      this.setState({
+        selectedMovie: data.movie,
+        isLoading: false
+      })
     })
   }
+
+  // displaySelectedMovie = (id) => {
+  //   console.log('line36', id)
+  //   const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
+  //   this.setState({
+  //     SelectedMovie: filteredMovie[0].id
+  //   })
+  // }
 
   returnHome = () => {
     this.setState({
@@ -52,9 +60,11 @@ class App extends React.Component {
          <header>
            {logo}
          </header>
-         <Route exact path='/:id' render={() => {
-          return <SingleMovie returnHome={this.returnHome} displaySelectedMovie={this.state.SelectedMovie}/>
-         } }/>
+      
+         <Route exact path='/:id' render={() => this.state.selectedMovie ? ( <SingleMovie loading={this.state.isLoading} returnHome={this.returnHome} singleMovie={this.state.selectedMovie}/>
+
+          ) : (<div>LOADING </div>) }/> 
+
          <Route exact path='/' render={() => (
           <AllMovies showMovies={this.state.allMovies} displaySelectedMovie={this.displaySelectedMovie}/>
             )}/>
@@ -66,9 +76,32 @@ class App extends React.Component {
     )
     }
 }
-//switch contains allMovies and SingleMovie components.
 
 export default App;
 
+// <Route exact path='/:id' render={({ match }) => {
+//           console.log('hereeeee', match)
+//             const id = parseInt(match.params.id)
+//             return <SingleMovie id={id} returnHome={this.returnHome} displaySelectedMovie={this.state.SelectedMovie} />
+//           } }/>
+
+
+///app: fetch call is made for all movies when app component
+// renders
+
+//app has a state for single movie that is setState when we click on a movie
+
+//So, the fetch call for a single movie needs to be invoked only when we click on a movie (how?)
+
+//we pass the match object as a property to a single movie to use as an alternate id for when the fetch call within app for single movie hasnt been made
+
+
+  // displaySelectedMovie = (id) => {
+  //   console.log('line36', id)
+  //   const filteredMovie = this.state.allMovies.filter(movie => movie.id === id)
+  //   this.setState({
+  //     SelectedMovie: filteredMovie[0].id
+  //   })
+  // }
 
     
