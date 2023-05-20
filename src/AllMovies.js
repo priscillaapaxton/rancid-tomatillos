@@ -26,6 +26,3 @@ const AllMovies = (props) => {
 }
 
 export default AllMovies
-
-// onClick={() => {
-//   return props.displaySelectedMovie(movie.id)}}

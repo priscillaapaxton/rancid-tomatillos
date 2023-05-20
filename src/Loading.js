@@ -1,10 +1,8 @@
-import react from 'react'
-import './Loading.css'
+import './Error.css'
 
 const Loading = () => {
-
   return (
-    <div>Loading your favorite movies...</div>
+    <div className='error-container'>Loading your favorite movies...</div>
   )
 }
 
