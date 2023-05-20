@@ -28,7 +28,6 @@ class SingleMovie extends React.Component  {
     this.displaySelectedMovie(this.props.id)
   } 
   render() {
-    
       const inputDate = this.state.selectedMovie.release_date;
       const date = new Date(inputDate);
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -42,9 +41,9 @@ class SingleMovie extends React.Component  {
           <p className='single-movie-overview'>{this.state.selectedMovie.overview}</p>
           <div className='single-movie-bottom-container'>
             <p className='single-movie-date'>Release Date: {formattedDate}</p>
-            <p className='single-movie-rating'>Average Rating: {this.state.selectedMovie.rating}</p>
+            <p className='single-movie-rating'>Average Rating: {this.state.selectedMovie.average_rating}</p>
           </div>
-          <button>
+          <button className='home-button'>
             <Link to='/' onClick={(e) => {
             this.props.returnHome()
           }}>RETURN HOME</Link>

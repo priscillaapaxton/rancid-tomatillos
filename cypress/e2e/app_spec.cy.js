@@ -4,15 +4,13 @@ describe('App', () => {
       statusCode: 201,
       fixture: "movies.json"
     })
-    cy.visit('http://localhost:3000/')
+    cy.visit('http://localhost:3000')
   })
 
   it('As a user, when I load the application, I can see the RT logo', () => {
-    cy.get('.App header')
-      .find('a') 
-      .find('img.logo')
-      .invoke('attr', 'src')
-      .should('include', 'Rancid-tomatillos')
+    cy.get('.logo').should('be.visible')
+      .get('.logo').click()
+      .url().should('include', 'http://localhost:3000')
   })
 
   it('As a user, when I load the application, I can see all movies', () => {
