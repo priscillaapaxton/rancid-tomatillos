@@ -8,9 +8,7 @@ export function getAllMovies () {
     return response.json()
     }
   })
-  .catch((err) => {
-    console.log(`Error at: ${err}`)
-  })
+
 }
 
 export function getSingleMovie (movieId) {
@@ -22,7 +20,5 @@ export function getSingleMovie (movieId) {
       return response.json()
     }
   })
-  .catch((err) => {
-    console.log(`Error at ${err}`)
-  })
+
 }

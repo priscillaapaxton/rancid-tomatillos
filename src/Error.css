@@ -2,4 +2,6 @@
   color: white;
   font-size: 45px;
   font-family: "Gill Sans", sans-serif;
+  display: flex;
+  justify-content: center;
 }
