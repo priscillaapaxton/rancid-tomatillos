@@ -6,8 +6,8 @@ const AllMovies = (props) => {
   const movieCards = props.showMovies.map(movie => {
 
     return (
-     <Link to={`/${movie.id}`}>
-       <div className='movie-card' key={movie.id}  >
+     <Link to={`/${movie.id}`} key={movie.id} >
+       <div className='movie-card'>
         <img className='movie-card-image'
           src={movie.poster_path}
           alt={movie.title}
@@ -22,7 +22,7 @@ const AllMovies = (props) => {
       {movieCards}
     </div>
   )
-
+  
 }
 
 export default AllMovies

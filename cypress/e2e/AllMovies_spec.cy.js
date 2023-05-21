@@ -2,7 +2,7 @@ describe('All Movies', () => {
   beforeEach(() => {
     cy.intercept('GET', "https://rancid-tomatillos.herokuapp.com/api/v2/movies/", {
       statusCode: 201,
-      fixture: "movies.json"
+      fixture: "movies"
     })
     cy.visit('http://localhost:3000/')
   })
@@ -18,5 +18,13 @@ describe('All Movies', () => {
 
     cy.get('.movie-card-title')
       .should('have.length', 40)
+  })
+
+  it('Should alert the user to an error with the network', () => {
+    cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movie', {
+      statusCode: 404
+    })
+    .visit('http://localhost:3000/')
+    .get('.error-container')
   })
 })
