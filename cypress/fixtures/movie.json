@@ -1,5 +1,5 @@
 {
-  "singleMovie": {
+  "movie": {
     "id": 436270,
     "title": "Black Adam",
     "poster_path": "https://image.tmdb.org/t/p/original//pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg",
@@ -18,3 +18,5 @@
     "average_rating": 4
   }
 }
+
+
