@@ -10,7 +10,7 @@ This was our first group project for the third module of Turing's Front-End soft
 
 ### Contributors:
 [//]: <> (Who worked on this application? Link to their LinkedIn.)
-- [Matt Saqueli]([https://github.com/mattsaqueli](https://www.linkedin.com/in/mattheus-saqueli-409813250/))
+- [Matt Saqueli]([https://github.com/mattsaqueli](https://www.linkedin.com/in/mattheus-saqueli-409813250/)
 - [Priscilla Paxton](https://www.linkedin.com/in/priscilla-paxton-9175bb199/)
 
 
