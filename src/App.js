@@ -18,6 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
+
     apiCalls.getAllMovies()
     .then((data) => {
       this.setState({
@@ -45,7 +46,7 @@ class App extends React.Component {
            return ( <SingleMovie id={id} key={id}/> ) } 
          } />
 
-         <Route exact path='/' render={() => ( this.state.isLoading ? (<Loading />) : this.state.isError? ( <Error /> ) : (<AllMovies showMovies={this.state.allMovies} /> ) )}/>
+         <Route exact path='/' render={() => ( this.state.isError ? ( <Error /> ) : this.state.isLoading ? (<Loading />) : (<AllMovies showMovies={this.state.allMovies} /> ) )}/>
 
          <footer>
            <h3> Rancid Tomatillos 2023 </h3>
@@ -57,4 +58,3 @@ class App extends React.Component {
 }
 
 export default App;
-
